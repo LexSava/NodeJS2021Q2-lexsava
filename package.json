@@ -1,0 +1,23 @@
+{
+  "name": "caesar-cipher-task",
+  "version": "1.0.0",
+  "description": "Node JS Course Rss Task one.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LexSava/NodeJS2021Q2-lexsava.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs"
+  ],
+  "author": "Aliaksei Savastsyanau <lexsava@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LexSava/NodeJS2021Q2-lexsava/issues"
+  },
+  "homepage": "https://github.com/LexSava/NodeJS2021Q2-lexsava#readme"
+}
