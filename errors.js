@@ -1,22 +1,28 @@
 const chalk = require('chalk')
-
+const { stderr } = process;
 const errAction = () => {
-  console.error(chalk.black.bgRed('ERROR Action not specified!\n'));
+  stderr.write(chalk.black.bgRed('ERROR Action not specified!\n'));
+  process.exit(1);
 }
 const errActionValue = () => {
-  console.error(chalk.black.bgRed('ERROR Action value is incorrect! Please enter a "encode" or "decode".\n'));
+  stderr.write(chalk.black.bgRed('ERROR Action value is incorrect! Please enter a "encode" or "decode".\n'));
+  process.exit(1);
 }
 const errShift = () => {
-  console.error(chalk.black.bgRed('ERROR Shift flag is empty!\n'));
+  stderr.write(chalk.black.bgRed('ERROR Shift flag is empty!\n'));
+  process.exit(1);
 }
 const errShiftValue = () => {
-  console.error(chalk.black.bgRed('ERROR Shift value is incorrect! Please enter a positive integer.\n'));
+  stderr.write(chalk.black.bgRed('ERROR Shift value is incorrect! Please enter a positive integer.\n'));
+  process.exit(1);
 }
 const errInput = () => {
-  console.error(chalk.black.bgRed("ERROR -i or --input is not correct!"));
+  stderr.write(chalk.black.bgRed("ERROR -i or --input is not correct!"));
+  process.exit(1);
 }
 const errOutput = () => {
-  console.error(chalk.black.bgRed("ERROR -o or --output is not correct!"));
+  stderr.write(chalk.black.bgRed("ERROR -o or --output is not correct!"));
+  process.exit(1);
 }
 
 module.exports = {
