@@ -23,8 +23,6 @@ const checkArgv = (action, shift) => {
   }
 };
 
-
-
 module.exports = {
   checkArgv
 };

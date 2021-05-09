@@ -48,28 +48,6 @@ const caesarCipher = (str, shift, action) => {
       .replace(/[A-Z]/g, shiftUpperChar)
       .replace(/[a-z]/g, shiftLowerChar);
   }
-
-  // const shiftUpperChar = (char) => {
-  //   let newCharCode = (char.charCodeAt(0) - upperCharCode + shift) % alphabetLength;
-  //   if (newCharCode < 0) {
-  //     newCharCode += alphabetLength;
-  //   }
-  //   newCharCode += upperCharCode;
-  //   return String.fromCharCode(newCharCode);
-  // };
-
-  // const shiftLowerChar = (char) => {
-  //   let newCharCode = (char.charCodeAt(0) - lowerCharCode + shift) % alphabetLength;
-  //   if (newCharCode < 0) {
-  //     newCharCode += alphabetLength;
-  //   }
-  //   newCharCode += lowerCharCode;
-  //   return String.fromCharCode(newCharCode);
-  // };
-
-  // return str
-  //   .replace(/[A-Z]/g, shiftUpperChar)
-  //   .replace(/[a-z]/g, shiftLowerChar);
 };
 
 module.exports = {

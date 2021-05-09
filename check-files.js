@@ -6,18 +6,14 @@ const checkFiles = (input, output) => {
   if (input === undefined || output === undefined) {
     return;
   }
-  fs.access(input, fs.F_OK, (err) => {
-    if (err) {
-      errInput();
-      return;
-    }
-  })
-  fs.access(output, fs.F_OK, (err) => {
-    if (err) {
-      errOutput();
-      return;
-    }
-  })
+  if (!fs.existsSync(input)) {
+    errInput();
+    process.exit(1);
+  }
+  if (!fs.existsSync(output)) {
+    errOutput();
+    process.exit(1);
+  }
 }
 
 module.exports = {
