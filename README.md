@@ -1,9 +1,9 @@
 ## Install:
 
-- 1 Step - **https://github.com/LexSava/NodeJS2021Q2-lexsava**
-- 2 Step - **cd .\NodeJS2021Q2-lexsavai**
-- 3 Step - **git checkout caesar-cipher-task**
-- 3 Step - **npm install**
+- 1 Step - Clone this repo **https://github.com/LexSava/NodeJS2021Q2-lexsava**
+- 2 Step - Enter the folder **cd .\NodeJS2021Q2-lexsavai**
+- 3 Step - Switch to development branch **git checkout caesar-cipher-task**
+- 3 Step - Install dependencies **npm install**
 
 ## Run application:
 
