@@ -1,28 +1,31 @@
-const caesarCipher = (str, num) => {
-  num = num % 26;
-  let lowerCaseStr = str.toLowerCase();
-  let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  let newStr = '';
+const caesarCipher = (str, shift) => {
 
-  for (let i = 0; i < lowerCaseStr.length; i++) {
-    let currentLetter = lowerCaseStr[i];
-    if (currentLetter === ' ') {
-      newStr += currentLetter;
-      continue;
+  const alphabetLength = 26;
+  const upperCharCode = 65;
+  const lowerCharCode = 97;
+
+  const shiftUpperChar = (char) => {
+    let newCharCode = (char.charCodeAt(0) - upperCharCode + shift) % alphabetLength;
+    if (newCharCode < 0) {
+      newCharCode += alphabetLength;
     }
-    let currentIndex = alphabet.indexOf(currentLetter);
-    let newIndex = currentIndex + num;
-    if (newIndex > 25) newIndex = newIndex - 26;
-    if (newIndex < 0) newIndex = newIndex + 26;
-    if (str[i] === str[i].toUpperCase()) {
-      newStr += alphabet[newIndex].toUpperCase();
+    newCharCode += upperCharCode;
+    return String.fromCharCode(newCharCode);
+  };
+
+  const shiftLowerChar = (char) => {
+    let newCharCode = (char.charCodeAt(0) - lowerCharCode + shift) % alphabetLength;
+    if (newCharCode < 0) {
+      newCharCode += alphabetLength;
     }
-    else {
-      newStr += alphabet[newIndex];
-    }
-  }
-  return newStr;
-}
+    newCharCode += lowerCharCode;
+    return String.fromCharCode(newCharCode);
+  };
+
+  return str
+    .replace(/[A-Z]/g, shiftUpperChar)
+    .replace(/[a-z]/g, shiftLowerChar);
+};
 
 module.exports = {
   caesarCipher,

@@ -7,7 +7,7 @@ const moduleCheckArgv = require('./check-argv')
 const { stderr } = process;
 
 const { caesarCipher } = moduleCaesarCipher;
-const { errAction, errActionValue, errShift, errShiftValue, errInput, errOutput } = moduleErrors;
+const { errInput, errOutput } = moduleErrors;
 const { checkArgv } = moduleCheckArgv;
 const outputFile = path.join(__dirname, "output.txt");
 const inputFile = path.join(__dirname, "input.txt");
@@ -21,12 +21,14 @@ const argv = require('minimist')(process.argv.slice(2));
 // $ node my_caesar_cli --action encode --shift 7 --input plain.txt --output encoded.txt
 
 // const args = parseArgs(process.argv.slice(2));
+
 console.log(argv);
 
+let action;
 let shift;
 let input;
 let output;
-let action;
+
 
 Object.keys(argv).forEach((argItem) => {
   switch (argItem) {
@@ -55,25 +57,38 @@ Object.keys(argv).forEach((argItem) => {
   }
 });
 
-checkArgv(action, shift);
+const CheckValidityFiles = (() => {
+  checkArgv(action, shift);
+  if (argv.i && input !== 'input.txt' || argv.input && input !== 'input.txt') {
+    errInput();
+    process.exit(1);
+  } else if (argv.o && argv.o !== 'output.txt' || argv.output && argv.output !== 'output.txt') {
+    errOutput();
+    process.exit(1);
+  }
+})();
 
-
-// if (argv.i && input !== 'input.txt' || argv.input && input !== 'input.txt') {
-//   console.log(1);
-//   errInput();
-// } else if (argv.o && argv.o !== 'output.txt') {
-//   console.log(2);
-//   errOutput();
-// } else if (argv.output && argv.output !== 'output.txt') {
-//   console.log(3);
-//   errOutput();
-// }
+if (action === "encode" || action === "encode") {
+  if (input === 'input.txt' && output === 'output.txt') {
+    console.log('introduced input and output');
+    fs.readFile(inputFile, 'utf-8', (err, content) => {
+      if (err) {
+        throw err;
+      }
+      fs.appendFile(outputFile, caesarCipher(`${content}\n`, shift), err => {
+        if (err) {
+          throw err;
+        }
+      })
+    })
+  }
+}
 
 if (action === "encode" || action === "encode") {
   if (!argv.i && !argv.input && !argv.o && !argv.output) {
-    console.log(1);
+    console.log('no input and output');
     const eventUser = readline.createInterface({ input: process.stdin, output: process.stdout });
-    eventUser.question(chalk.blue(`Enter the data: `), (userInput) => {
+    eventUser.question(chalk.blue(`Enter the data: \n`), (userInput) => {
       if (userInput.length > 0) {
         console.log(caesarCipher(`${userInput}\n`, shift));
       }
@@ -87,9 +102,8 @@ if (action === "encode" || action === "encode") {
 }
 
 if (action === "encode" || action === "encode") {
-  if (!argv.i || !argv.input && argv.o || argv.output) {
-    console.log(argv.input);
-    console.log(1);
+  if (input === undefined && output === 'output.txt') {
+    console.log('no input but there is output');
     const eventUser = readline.createInterface({ input: process.stdin, output: process.stdout });
     eventUser.question(chalk.blue(`Enter the data: \n`), (userInput) => {
       if (userInput.length > 0) {
@@ -113,18 +127,14 @@ if (action === "encode" || action === "encode") {
 }
 
 if (action === "encode" || action === "encode") {
-  if (input === 'input.txt' && output === 'output.txt') {
+  if (output === undefined && input === 'input.txt') {
+    console.log('no output but there is input');
     fs.readFile(inputFile, 'utf-8', (err, content) => {
       if (err) {
         throw err;
       }
-      fs.appendFile(outputFile, caesarCipher(`${content}\n`, shift), err => {
-        if (err) {
-          throw err;
-        }
-      })
+      console.log(caesarCipher(`${content}\n`, shift));
     })
   }
 }
 
-// console.log(caesarCipher('ABC', 1));
