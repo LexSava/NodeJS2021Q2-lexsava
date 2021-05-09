@@ -6,7 +6,7 @@ const caesarCipher = (str, shift, action) => {
 
   if (action === 'encode') {
     const shiftUpperChar = (char) => {
-      let newCharCode = (char.charCodeAt(0) - upperCharCode + shift) % alphabetLength;
+      let newCharCode = (char.charCodeAt(0) - upperCharCode + Math.round(shift)) % alphabetLength;
       if (newCharCode < 0) {
         newCharCode += alphabetLength;
       }
@@ -15,7 +15,7 @@ const caesarCipher = (str, shift, action) => {
     };
 
     const shiftLowerChar = (char) => {
-      let newCharCode = (char.charCodeAt(0) - lowerCharCode + shift) % alphabetLength;
+      let newCharCode = (char.charCodeAt(0) - lowerCharCode + Math.round(shift)) % alphabetLength;
       if (newCharCode < 0) {
         newCharCode += alphabetLength;
       }
@@ -28,7 +28,7 @@ const caesarCipher = (str, shift, action) => {
 
   } else if (action === 'decode') {
     const shiftUpperChar = (char) => {
-      let newCharCode = (char.charCodeAt(0) - upperCharCode - shift) % alphabetLength;
+      let newCharCode = (char.charCodeAt(0) - upperCharCode - shMath.round(shift)) % alphabetLength;
       if (newCharCode < 0) {
         newCharCode += alphabetLength;
       }
@@ -37,7 +37,7 @@ const caesarCipher = (str, shift, action) => {
     };
 
     const shiftLowerChar = (char) => {
-      let newCharCode = (char.charCodeAt(0) - lowerCharCode - shift) % alphabetLength;
+      let newCharCode = (char.charCodeAt(0) - lowerCharCode - Math.round(shift)) % alphabetLength;
       if (newCharCode < 0) {
         newCharCode += alphabetLength;
       }

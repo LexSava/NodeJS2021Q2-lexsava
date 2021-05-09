@@ -17,7 +17,7 @@ const checkArgv = (action, shift) => {
     process.exit(1);
   }
 
-  if (typeof shift !== 'number' || !Number.isInteger(shift)) {
+  if (typeof shift !== 'number') {
     errShiftValue();
     process.exit(1);
   }
